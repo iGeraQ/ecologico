@@ -6,8 +6,8 @@
  */
 
 // Incluir archivos necesarios
-require_once __DIR__ . '/../../../config.inc.php';
-require_once __DIR__ . '/../sesion.php';
+require_once __DIR__ . '/../src/servidor/config/config.inc.php';
+require_once __DIR__ . '/../src/servidor/sesion.php';
 
 /**
  * Clase simple de testing sin dependencias externas

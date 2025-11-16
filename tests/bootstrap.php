@@ -1,7 +1,7 @@
 <?php
 
 // Bootstrap file para PHPUnit
-require_once __DIR__ . '/../config.inc.php';
+require_once __DIR__ . '/../src/servidor/config/config.inc.php';
 
 // Mock de headers para evitar errores en testing
 if (!function_exists('mockHeaders')) {

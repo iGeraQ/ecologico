@@ -1,7 +1,20 @@
 <?php
 
+// Workaround for PHPUnit trying to mock non-existent mysqli classes when extension is not loaded.
+// These dummy classes are only used for mocking purposes during tests.
+if (!class_exists('mysqli')) {
+    class mysqli { /* DUMMY */ }
+}
+if (!class_exists('mysqli_stmt')) {
+    class mysqli_stmt { /* DUMMY */ }
+}
+if (!class_exists('mysqli_result')) {
+    class mysqli_result { /* DUMMY */ }
+}
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use src\servidor\config\conexiondb;
 
 /**
  * Tests para el módulo de autenticación
@@ -24,9 +37,9 @@ class AutenticacionTest extends TestCase
         MockSession::reset();
         
         // Mock de la conexión a base de datos
-        $this->mockConexion = $this->createMock(mysqli::class);
-        $this->mockStmt = $this->createMock(mysqli_stmt::class);
-        $this->mockResult = $this->createMock(mysqli_result::class);
+        $this->mockConexion = $this->createMock(\mysqli::class);
+        $this->mockStmt = $this->createMock(\mysqli_stmt::class);
+        $this->mockResult = $this->createMock(\mysqli_result::class);
         
         // Mock de la clase Conexiondb
         $mockConexionDb = $this->createMock(Conexiondb::class);
