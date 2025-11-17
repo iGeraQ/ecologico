@@ -9,7 +9,13 @@
          failOnWarning="true">
     <testsuites>
         <testsuite name="Autenticacion">
-            <file>tests/AutenticacionSimpleTest.php</file>
+            <file>tests/AutenticacionTest.php</file>
+        </testsuite>
+        <testsuite name="Habitaciones">
+            <file>tests/HabitacionesTest.php</file>
+        </testsuite>
+        <testsuite name="Pagos">
+            <file>tests/PagoTest.php</file>
         </testsuite>
     </testsuites>
 
