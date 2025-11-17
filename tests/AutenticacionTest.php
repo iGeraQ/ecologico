@@ -31,8 +31,7 @@ class AutenticacionTest extends TestCase
         
         // Assert
         $this->assertFalse($contrasenaCorrecta, 'Contraseña incorrecta debe ser rechazada');
-        
-        echo "\n✅ Test 2 PASADO: Contraseña incorrecta rechazada correctamente";
+
     }
 
     /**
@@ -61,7 +60,6 @@ class AutenticacionTest extends TestCase
         $this->assertEquals('admin', $_SESSION['user'], 'Nombre de usuario debe establecerse');
         $this->assertEquals('administrador', $_SESSION['rol'], 'Rol debe establecerse correctamente');
         
-        echo "\n✅ Test 3 PASADO: Login exitoso con admin/admin - Rol: " . $_SESSION['rol'];
     }
 
     /**
@@ -84,6 +82,5 @@ class AutenticacionTest extends TestCase
         $inexistente = MockDatabase::buscarCliente('usuario_que_no_existe');
         $this->assertNull($inexistente, 'Usuario inexistente debe retornar null');
         
-        echo "\n✅ Test Mock DB PASADO: Base de datos mock funcionando correctamente";
     }
 }

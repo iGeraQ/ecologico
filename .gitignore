@@ -1,2 +1,4 @@
 .vscode/launch.json
 phpunit.phar
+tests/results/
+.phpunit.cache/
