@@ -1,5 +1,18 @@
 <?php
 
+// Definir modo testing ANTES de incluir otros archivos
+define('TESTING_MODE', true);
+
+// Mock simple de base de datos directamente aquí
+$GLOBALS['mock_usuarios'] = [
+    'admin' => ['idCliente' => 1, 'user' => 'admin', 'contraseña' => 'admin', 'rol' => 'administrador'],
+    'gera' => ['idCliente' => 3, 'user' => 'gera', 'contraseña' => 'qwerty', 'rol' => 'cliente'],
+    'juan' => ['idCliente' => 4, 'user' => 'juan', 'contraseña' => '123', 'rol' => 'administrador']
+];
+
+// Incluir el mock
+require_once __DIR__ . '/MockDatabase.php';
+
 // Bootstrap file para PHPUnit
 require_once __DIR__ . '/../src/servidor/config/config.inc.php';
 
@@ -13,29 +26,12 @@ if (!function_exists('mockHeaders')) {
 }
 
 // Override de header function para testing
-if (!function_exists('header')) {
-    function header($string, $replace = true, $http_response_code = null) {
-        if (defined('TESTING_HEADERS_SENT')) {
-            // En testing, almacenamos headers en una variable global
-            if (!isset($GLOBALS['test_headers'])) {
-                $GLOBALS['test_headers'] = [];
-            }
-            $GLOBALS['test_headers'][] = $string;
-            return;
+if (!function_exists('header_original')) {
+    if (function_exists('header')) {
+        // Guardar función original
+        function header_original($string, $replace = true, $http_response_code = null) {
+            return \header($string, $replace, $http_response_code);
         }
-        
-        // En producción, usa la función original
-        return \header($string, $replace, $http_response_code);
-    }
-}
-
-// Override de exit function para testing
-if (!function_exists('exitMock')) {
-    function exitMock($status = null) {
-        if (defined('TESTING_HEADERS_SENT')) {
-            throw new Exception('Script terminated with exit()');
-        }
-        exit($status);
     }
 }
 
@@ -80,6 +76,7 @@ class MockSession {
     public static function reset() {
         self::$data = [];
         self::$started = false;
+        MockDatabase::reset();
     }
 }
 

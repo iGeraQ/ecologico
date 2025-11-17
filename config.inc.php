@@ -22,6 +22,12 @@ class Conexiondb{
 	}
 
 	public function getConnection(){
+		// Si estamos en modo testing, usar mock
+		if (defined('TESTING_MODE') && TESTING_MODE) {
+			return new MockMysqli();
+		}
+		
+		// En producción, usar conexión real
 		$this->conexion = new mysqli($this->servidor, $this->usuario, $this->contrasena, $this->db);
 		
 		if($this->conexion->connect_error){
@@ -29,6 +35,4 @@ class Conexiondb{
 		}
 		return $this->conexion;
 	}
-
-
 }

@@ -1,1 +1,0 @@
-{"version":2,"defects":{"AutenticacionTest::testIniciarSesionExitoso":8,"AutenticacionTest::testIniciarSesionAdministrador":8,"AutenticacionTest::testIniciarSesionUsuarioInexistente":8,"AutenticacionTest::testIniciarSesionContrasenaIncorrecta":8,"AutenticacionTest::testRegistrarUsuarioExitoso":8,"AutenticacionTest::testCerrarSesion":8},"times":[]}
