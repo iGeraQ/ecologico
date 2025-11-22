@@ -1,4 +1,25 @@
+# IDEs y editores
+.vscode/
 .vscode/launch.json
+
+# PHPUnit
 phpunit.phar
-tests/results/
 .phpunit.cache/
+coverage/
+composer.phar
+
+
+# Tests
+tests/results/
+
+# Composer
+/vendor/
+composer.lock
+
+# Config específico del entorno
+config.inc.php
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

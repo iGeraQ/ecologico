@@ -1,5 +1,8 @@
 <?php
 
+// Cargar el autoloader de Composer
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // Definir modo testing ANTES de incluir otros archivos
 define('TESTING_MODE', true);
 

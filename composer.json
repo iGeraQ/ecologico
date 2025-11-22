@@ -1,0 +1,30 @@
+{
+    "name": "igeraq/ecologico",
+    "description": "Sistema de reservación de habitaciones ecológicas",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ecologico\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "test-filter": "phpunit --filter"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
