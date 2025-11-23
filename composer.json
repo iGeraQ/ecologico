@@ -2,6 +2,7 @@
     "name": "igeraq/ecologico",
     "description": "Sistema de reservación de habitaciones ecológicas",
     "type": "project",
+    "license": "proprietary",
     "require": {
         "php": ">=7.4"
     },
