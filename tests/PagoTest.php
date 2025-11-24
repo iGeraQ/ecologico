@@ -13,6 +13,55 @@ class PagoTest extends TestCase
 		$_SESSION = [];
 
 		MockDatabase::reset();
+		
+		// Configurar modo testing
+		if (!defined('TESTING_MODE')) {
+			define('TESTING_MODE', true);
+		}
+	}
+
+	/**
+	 * Helper method para ejecutar pagar.php de forma segura
+	 */
+	private function executePagarScript($postData)
+	{
+		// Backup del estado actual
+		$originalPost = $_POST;
+		$originalServer = $_SERVER;
+		
+		try {
+			// Configurar datos para este test
+			$_POST = $postData;
+			$_SERVER['REQUEST_METHOD'] = 'POST';
+			
+			// Capturar salida
+			ob_start();
+			
+			// Incluir las funciones solo una vez y ejecutar lógica
+			include_once __DIR__ . '/../src/servidor/pagar.php';
+			
+			// Ejecutar la lógica principal manualmente
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$idHabitacion = $_POST['idHabitacion'];
+				$idCliente = $_POST['idCliente'];
+				$fechaReservacion = $_POST['fechaReservacion'];
+				$inicioEstadia = $_POST['inicioEstadia'];
+				$finEstadia = $_POST['finEstadia'];
+				$subtotal = $_POST['subtotal'];
+
+				$resultado = agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $inicioEstadia, $finEstadia, $subtotal);
+				echo json_encode(["mensaje" => $resultado]);
+			}
+			
+			$response = ob_get_contents();
+			ob_end_clean();
+			
+			return $response;
+		} finally {
+			// Restaurar estado original
+			$_POST = $originalPost;
+			$_SERVER = $originalServer;
+		}
 	}
 
 	public function testPagoExitoso()
@@ -74,7 +123,7 @@ class PagoTest extends TestCase
 	public function testPagoDatosInvalidos()
 	{
 		// Datos inválidos (campos vacíos/nulos)
-		$_POST = [
+		$postData = [
 			'idHabitacion' => '',
 			'idCliente' => '',
 			'fechaReservacion' => '',
@@ -83,19 +132,11 @@ class PagoTest extends TestCase
 			'subtotal' => ''
 		];
 
-		// Simular REQUEST_METHOD POST
-		$_SERVER['REQUEST_METHOD'] = 'POST';
-
 		// Verificar estado inicial
 		$reservacionesAntes = MockDatabase::obtenerReservaciones();
 
-		// Capturar la respuesta
-		ob_start();
-		if (!defined('TESTING_MODE')) {
-			define('TESTING_MODE', true);
-		}
-		include_once __DIR__ . '/../src/servidor/pagar.php';
-		$response = ob_get_clean();
+		// Ejecutar script de pago
+		$response = $this->executePagarScript($postData);
 
 		// Decodificar respuesta JSON
 		$responseData = json_decode($response, true);

@@ -1,3 +1,3 @@
 @echo off
 echo Ejecutando tests con Composer/PHPUnit...
-C:\xampp\php\php.exe vendor\bin\phpunit.bat %*
+C:\xampp\php\php.exe vendor\bin\phpunit %*
