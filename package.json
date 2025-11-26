@@ -1,0 +1,23 @@
+{
+  "name": "ecologico",
+  "version": "1.0.0",
+  "description": "Este proyecto web permite a los usuarios administrar reservaciones de habitaciones, tanto como huéspedes como administradores. La aplicación proporciona autenticación de usuarios, administración de habitaciones y un carrito de reservaciones, además de una experiencia de usuario intuitiva y agradable.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
+  }
+}
