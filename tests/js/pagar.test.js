@@ -38,45 +38,6 @@ describe("Test del script pagar.js", () => {
     // Disparar DOMContentLoaded
     document.dispatchEvent(new Event("DOMContentLoaded"));
   });
-  /* 
-  test("Eliminar habitación llama a cookiesCarrito.eliminarHabitacionDelCarrito", () => {
-    const btnEliminar = document.getElementById("hab1");
-
-    // Disparar click
-    btnEliminar.click();
-
-    expect(cookiesCarrito.eliminarHabitacionDelCarrito).toHaveBeenCalledWith(
-      "hab1"
-    );
-    expect(window.location.reload).toHaveBeenCalled();
-  });
-
-  test("Editar habitación llama a cookiesCarrito.obtenerCookie y prepara la URL si hay cookies", () => {
-    const btnEditar = document.getElementById("hab2");
-
-    // Mock para que exista cookie
-    cookiesCarrito.obtenerCookie.mockImplementation((nombre) => {
-      if (nombre === "entradahab2") return "2025-12-10";
-      if (nombre === "salidahab2") return "2025-12-12";
-      if (nombre === "habitacionhab2") return "2";
-      return undefined;
-    });
-
-    // Mock document.location.href
-    delete document.location;
-    document.location = "";
-
-    // Disparar click
-    btnEditar.click();
-
-    expect(cookiesCarrito.obtenerCookie).toHaveBeenCalledWith("entradahab2");
-    expect(cookiesCarrito.obtenerCookie).toHaveBeenCalledWith("salidahab2");
-    expect(cookiesCarrito.obtenerCookie).toHaveBeenCalledWith("habitacionhab2");
-
-    expect(document.location).toBe(
-      "../view/carrito.php?id=hab2&entrada=2025-12-10&salida=2025-12-12&personas=2"
-    );
-  }); */
 
   test("Botón pagar muestra alerta si carrito vacío", () => {
     document.getElementById("totalFinal").innerHTML =
