@@ -2,12 +2,14 @@
 .vscode/
 .vscode/launch.json
 
+# Node.js
+node_modules/
+
 # PHPUnit
 phpunit.phar
 .phpunit.cache/
 coverage/
 composer.phar
-
 
 # Tests
 tests/results/
