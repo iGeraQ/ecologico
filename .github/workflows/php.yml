@@ -1,4 +1,4 @@
-name: PHP Tests
+name: Php Tests
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  tests:
+  tests-php:
     runs-on: ubuntu-latest
 
     steps:
