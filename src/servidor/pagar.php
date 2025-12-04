@@ -9,7 +9,7 @@ function agregarReservacionDB($idHabitacion, $idCliente, $fechaReservacion, $ini
     $peticion = "INSERT INTO reservaciones (idHabitacion, idCliente, fechaReservacion, inicioEstadia, finEstadia, subtotal) 
                  VALUES ('$idHabitacion', '$idCliente', '$fechaReservacion', '$inicioEstadia', '$finEstadia', '$subtotal')";
 
-    if ($conexionSql->query($peticion) === False) {
+    if ($conexionSql->query($peticion) === TRUE) {
         $idReserva = $conexionSql->insert_id;
         $respuesta = "Reservación agregada correctamente.";
     } else {
